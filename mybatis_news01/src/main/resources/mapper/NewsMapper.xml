@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kai.mapper.NewsMapper">
+
+    <sql id="column">
+        id,title,author,update_time,Content,ImagePath
+    </sql>
+
+
+<!--    动态sql之where标签和if标签-->
+<!--    查询语句-->
+    <select id="search"  parameterType="News1" resultMap="result">
+        select <include refid="column"></include> from news_1
+            <where>
+                <if test="id!=null">
+                    and id=#{id}
+                </if>
+                <if test="author!=null">
+                    and author=#{author}
+                </if>
+            </where>
+    </select>
+
+    <!--    增加-->
+   <insert id="insertNews" parameterType="news1" useGeneratedKeys="true" keyProperty="id">
+       insert news_1 values(null,#{title},#{author},#{updateTime},#{content},#{imagePath})
+   </insert>
+
+<!-- 修改   -->
+    <update id="updateNews" parameterType="news1">
+        update news_1
+        <set>
+            <if test="author!=null">
+                author=#{author},
+            </if>
+            <if test="content!=null">
+                content=#{content}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--    解决字段名与属性名不一致问题-->
+    <resultMap id="result" type="News1">
+                <result property="updateTime" column="update_Time"></result>
+    </resultMap>
+
+
+    <!--    查多的一方-->
+    <resultMap id="myResult" type="News1">
+        <result property="updateTime" column="update_Time"></result>
+        <result property="typeId" column="type_id"/>
+<!--     因为开启了全局延迟加载   用fetchType="eager"设置局部立即加载-->
+        <association property="type"
+                     select="com.kai.mapper.TypeMapper.searchById" column="type_id"
+        fetchType="eager">
+        </association>
+    </resultMap>
+    <select id="searchNews" resultMap="myResult">
+        select * from news_1
+    </select>
+
+<!--    collection分步查询-->
+    <select id="serchBystepTwo" resultType="News1">
+        select * from news_1 where type_id=#{xxx}
+    </select>
+
+</mapper>

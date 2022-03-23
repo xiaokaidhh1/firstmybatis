@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kai.mapper.SysUsersMapper">
+
+    <resultMap id="result" type="sysUsers">
+        <id property="id" column="id"/>
+        <collection property="sysRoles"
+                    select="com.kai.mapper.SysRolesMapper.selectRolesById"
+                    column="id"
+        fetchType="lazy">
+        </collection>
+    </resultMap>
+
+    <select id="queryAllUsers" resultMap="result">
+        select * from sys_users
+    </select>
+
+
+</mapper>

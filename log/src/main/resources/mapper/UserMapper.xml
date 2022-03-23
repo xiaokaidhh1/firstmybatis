@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kai2.mapper.DianYingDao">
+
+    <sql id="hh">
+           id,leixing_id,ming,yanyuan,daoyan,piaojia
+    </sql>
+
+    <insert id="addDianYing" parameterType="DianYing">
+        insert into dian_ying(leixing_id,ming,yanyuan,daoyan,piaojia,tupianlujing) values(#{leixingId},#{ming},#{yanyuan},#{daoyan},#{piaojia},null )
+    </insert>
+
+<!--    获取自动递增主键-->
+    <insert id="insertFilm" useGeneratedKeys="true" keyProperty="id">
+        insert dian_ying values(null,#{leixingId},#{ming},#{yanyuan},#{daoyan},#{piaojia},null)
+    </insert>
+
+    <!--    <insert id="insertFilm"  useGeneratedKeys="true" keyProperty="id">-->
+<!--         insert into dian_ying values(8,"狙击手","不知道","张艺谋",38.5,null )-->
+<!--    </insert>-->
+
+    <delete id="deleteDianYing" parameterType="String">
+        delete  from dian_ying where id in(${ids})
+    </delete>
+    
+    <update id="modifyDianYing" parameterType="int">
+        update dian_ying set ming='狙击手2' where id=#{yyy}
+    </update>
+
+    <select id="searchDianYing" resultMap="result">
+        select <include refid="hh"></include> from dian_ying
+    </select>
+
+    <select id="SFIlm"  parameterType="int" resultMap="result">
+        select * from dian_ying
+        <where>
+            <if test=" id!=null">
+                and #{id}-4=id
+            </if>
+
+        </where>
+    </select>
+
+    <select id="searchDianYing2" resultType="DianYing">
+        select <include refid="hh"></include>  from dian_ying where id=#{arg0} and ming=#{arg1}
+    </select>
+
+
+    <select id="searchDianYing3" resultType="DianYing">
+        select <include refid="hh"></include>  from dian_ying where id=#{id} and ming=#{ming}
+    </select>
+
+
+    <!--    <insert id="">-->
+<!--        asd-->
+<!--    </insert>-->
+<resultMap id="result" type="DianYing">
+    <id property="id" column="id"></id>
+    <result property="leixingId" column="leixing_id"></result>
+</resultMap>
+
+    <select id="foreacht" parameterType="list" resultMap="result">
+        select *from dian_ying where id in
+        <foreach collection="list" item="sss" separator="," open="(" close=")">
+            #{sss}
+        </foreach>
+    </select>
+
+
+</mapper>
