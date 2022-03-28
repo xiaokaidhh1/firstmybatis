@@ -8,8 +8,4 @@ public interface LeiXingMapper {
     List<LeiXing> SelectByLeixingId(int id);
     List<LeiXing> selectByLeixingIdStepOne();
 
-
-
-
-
 }

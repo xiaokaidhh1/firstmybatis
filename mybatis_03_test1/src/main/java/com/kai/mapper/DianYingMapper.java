@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DianYingMapper {
     List<DianYing> selectAll();
-    List<DianYing> selectAllByLeixingId();
+//    List<DianYing> selectAllByLeixingId();
 
 //    @Results(id = "rs" ,value= {
 //            @Result(property = "leixingId", column = "leixing_id")

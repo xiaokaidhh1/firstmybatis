@@ -36,11 +36,12 @@
         </environment>
     </environments>
 
+
     <!--  关联xml配置的文件  -->
    <mappers>
-<!--       <package name="com.kai.mapper"/>-->
-       <mapper resource="mapper/DianYingMapper.xml"></mapper>
-       <mapper resource="mapper/LeiXingMapper.xml"></mapper>
+       <package name="com.kai.mapper"/>
+<!--       <mapper resource="mapper/DianYingMapper.xml"></mapper>-->
+<!--       <mapper resource="mapper/LeiXingMapper.xml"></mapper>-->
    </mappers>
 
 </configuration>

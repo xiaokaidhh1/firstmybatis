@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kai.mapper.LoginDao">
+
+    <sql id="cloumn">
+        id,usersn,password,name,age,sex
+    </sql>
+
+
+    <select id="searchUser" resultType="sysUsers">
+        select * from sys_users
+        <where>
+            <if test="username!=null">
+                and usersn=#{username}
+            </if>
+
+            <if test="password!=null">
+                and password=#{password}
+            </if>
+        </where>
+    </select>
+
+
+
+    <insert id="insert" useGeneratedKeys="true"  keyProperty="id">
+        insert   sys_users values (null,#{usersn},#{password},#{name},#{age},#{sex});
+    </insert>
+
+
+</mapper>

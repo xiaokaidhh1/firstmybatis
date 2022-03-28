@@ -42,4 +42,5 @@ public class MyTest {
         DianYingMapper mapper = (DianYingMapper) sqlSession.getMapper(DianYingMapper.class);
         System.out.println(mapper.selectByzhuJie(2));
     }
+
 }

@@ -42,6 +42,7 @@
         where id=#{id}
     </update>
 
+
     <!--    解决字段名与属性名不一致问题-->
     <resultMap id="result" type="News1">
                 <result property="updateTime" column="update_Time"></result>

@@ -41,6 +41,7 @@
        <mapper resource="mapper/NewsMapper.xml"></mapper>
        <mapper resource="mapper/TypeMapper.xml"></mapper>
        <mapper resource="mapper/CacheMapper.xml"></mapper>
+
    </mappers>
 
 </configuration>
