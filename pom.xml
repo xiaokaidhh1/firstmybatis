@@ -13,6 +13,7 @@
         <module>MyBatis_MBG</module>
         <module>mybatis_02</module>
         <module>mybatis_03_homework3</module>
+        <module>spring-mybatis_homewwork5</module>
     </modules>
 
     <properties>
@@ -62,6 +63,15 @@
             <artifactId>pagehelper</artifactId>
             <version>5.2.0</version>
         </dependency>
+
+
+        <!--简化开发-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+
     </dependencies>
 
     <!-- 控制Maven在构建过程中相关配置 -->
